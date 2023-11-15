@@ -2,17 +2,17 @@
 import type { Metadata, ResolvingMetadata } from 'next'
 import { useRouter, useParams } from 'next/navigation'
 import React from 'react'
-import useSWR from 'swr'
-import * as PokemonApi from '@/network/pokemon-api'
 import Link from 'next/link'
 import { Spinner } from 'react-bootstrap'
 import Image from 'next/image'
+import usePokemon from '@/hooks/usePokemon'
 
 const PokemonDetailsPage = () => {
   const params = useParams()
   const pokemonName = params.pokemon?.toString() || "";
 
-  const { data: pokemon, isLoading: pokemonLoading } = useSWR(pokemonName, PokemonApi.getPokemon)
+  const { pokemon, pokemonLoading } = usePokemon(pokemonName)
+
 
   const loaderProp = ({ src }: { src: string }) => {
     return src;
@@ -42,7 +42,7 @@ const PokemonDetailsPage = () => {
             <div className='d-inline-block mt-2'>
               <div><strong>Types：</strong> {pokemon.types.map(type => type.type.name).join(',')}</div>
               <div><strong>Height：</strong> {pokemon.height * 10} cm</div>
-              <div><strong>Height：</strong> {pokemon.weight / 10} kg</div>
+              <div><strong>Weight：</strong> {pokemon.weight / 10} kg</div>
             </div>
           </>
         }
