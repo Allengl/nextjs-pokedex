@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Spinner } from 'react-bootstrap'
 import Image from 'next/image'
 import usePokemon from '@/hooks/usePokemon'
+import loaderProp from '@/lib/utils'
 
 const PokemonDetailsPage = () => {
   const params = useParams()
@@ -14,9 +15,7 @@ const PokemonDetailsPage = () => {
   const { pokemon, pokemonLoading } = usePokemon(pokemonName)
 
 
-  const loaderProp = ({ src }: { src: string }) => {
-    return src;
-  }
+
 
   return (
     <>

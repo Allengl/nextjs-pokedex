@@ -1,4 +1,4 @@
-import React from 'react'
+'use client'
 import useSWR from 'swr'
 import * as PokemonApi from '@/network/pokemon-api'
 import { AxiosError } from 'axios'
